@@ -1,16 +1,13 @@
 ## Plot 4: 2x2 diagrams
 ## libraries and files and locale for English output in particular Posixt
-library(datasets)
 Sys.setlocale(locale = "english")
 file = "household_power_consumption.txt"
-
 
 ## Read data only for 2007-02-01 -> 02-02 
 l <- readLines(file)
 s <- head(grep('^[12]{1}/2/2007', l), 1)-1
 e <- tail(grep('^[12]{1}/2/2007', l), 1)
 remove(l)
-
 
 header <- read.table(file, nrows = 1, header = FALSE, sep =';', stringsAsFactors = FALSE)
 consumption <- read.table(file, header = TRUE, sep = ";", na.strings = "?", 
@@ -27,8 +24,7 @@ t <- strptime(paste(consumption$Date, consumption$Time), format = "%Y-%m-%d %H:%
 par(ps = 10, mfrow = c(2,2), mar = c(4,4,2,2))
 
 ## Plot 1
-plot(t, consumption$Global_active_power, type = "n", main = "", xlab = "", ylab = "Global Active Power (kilowatts)")
-lines(t, consumption$Global_active_power)
+plot(t, consumption$Global_active_power, type = "l", main = "", xlab = "", ylab = "Global Active Power (kilowatts)")
 
 ## Plot 2
 plot(t, consumption$Voltage, type = "n", main = "", xlab = "datetime", ylab = "Voltage")

@@ -1,16 +1,13 @@
 ## Plot 3: Sub-Meter data
 ## libraries and files and locale for English output in particular Posixt
-library(datasets)
 Sys.setlocale(locale = "english")
 file = "household_power_consumption.txt"
-
 
 ## Read data only for 2007-02-01 -> 02-02 
 l <- readLines(file)
 s <- head(grep('^[12]{1}/2/2007', l), 1)-1
 e <- tail(grep('^[12]{1}/2/2007', l), 1)
 remove(l)
-
 
 header <- read.table(file, nrows = 1, header = FALSE, sep =';', stringsAsFactors = FALSE)
 consumption <- read.table(file, header = TRUE, sep = ";", na.strings = "?", 

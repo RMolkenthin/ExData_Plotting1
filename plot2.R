@@ -1,6 +1,5 @@
 ## Plot 2: Line diagram Global Active Power
 ## libraries and files and locale for English output in particular Posixt
-library(datasets)
 Sys.setlocale(locale = "english")
 file = "household_power_consumption.txt"
 
@@ -10,7 +9,6 @@ l <- readLines(file)
 s <- head(grep('^[12]{1}/2/2007', l), 1)-1
 e <- tail(grep('^[12]{1}/2/2007', l), 1)
 remove(l)
-
 
 header <- read.table(file, nrows = 1, header = FALSE, sep =';', stringsAsFactors = FALSE)
 consumption <- read.table(file, header = TRUE, sep = ";", na.strings = "?", 
@@ -26,8 +24,8 @@ consumption$Date <- as.Date(consumption$Date, format = "%d/%m/%Y")
 t <- strptime(paste(consumption$Date, consumption$Time), format = "%Y-%m-%d %H:%M:%S")
 gap <- consumption$Global_active_power
 par(ps = 10)
-plot(t, gap, type = "n", main = "", xlab = "", ylab = "Global Active Power (kilowatts)")
-lines(t, gap)
+plot(t, gap, type = "l", main = "", xlab = "", ylab = "Global Active Power (kilowatts)")
+
 
 ## Save as PNG
 ## copy to screen device to png device
